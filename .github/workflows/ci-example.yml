@@ -1,0 +1,18 @@
+on:
+  push:
+    bracnhes:
+      - main
+jobs:
+    train_and_test:
+      runs-on: ubuntu-latest
+      name: CI-Test
+      steps:
+            - name: Train and Test Rasa Demo
+              uses: RasaHQ/rasa-train-test-gha@main
+              with:
+                # List of available tags: https://hub.docker.com/r/rasa/rasa/tags
+                rasa_version: '2.6.3-full'
+                # In order to add a PR comment with summary
+                # a GH Token has to be pass to the GH action
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+            # ...
